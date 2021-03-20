@@ -14,7 +14,9 @@ class AccountInfoViewController : UIViewController {
     @IBOutlet weak var expirationDateLabel : UILabel!
     @IBOutlet weak var cardStatusLabel : UILabel!
     
-    var accountModel : AccountInfoModel? = AccountInfoModel(Balance: 50, card: AccountInfoModel.CardModel(firstName: "Garrett", lastName: "Mulroney", numberLast4: "0000", expirationDate: "12/12/21", status: AccountInfoModel.CardModel.CardStatus.Active))
+    @IBOutlet weak var loadingView : UIActivityIndicatorView!
+    
+    var accountModel : AccountInfoModel? = AccountInfoModel(balance: 50, card: CardModel(numberLast4: "0000", expirationDate: "12/12/21", status: CardStatus.Active))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,29 @@ class AccountInfoViewController : UIViewController {
     }
     
     func loadAccountInfo() {
-        
+        loadingView.startAnimating()
+        AccountInfoModel.loadAccountInfo { [weak self] (result) in
+            switch result {
+            case .success(let account) :
+                self?.accountModel = account
+                DispatchQueue.main.async {
+                    self?.loadingView.stopAnimating()
+                    if let balance = self?.accountModel?.balance {
+                        self?.balanceLabel.text = String(format: "%.2f", balance)
+                    }
+                    if let last4 = self?.accountModel?.card.numberLast4 {
+                        self?.last4Label.text = last4
+                    }
+                    if let expirationDate = self?.accountModel?.card.expirationDate {
+                        self?.expirationDateLabel.text = expirationDate
+                    }
+                    if let cardStatus = self?.accountModel?.card.status {
+                        self?.cardStatusLabel.text = cardStatus.rawValue
+                    }
+                }
+            case .failure(let error) :
+                print(error)
+            }
+        }
     }
 }

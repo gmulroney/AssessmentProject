@@ -193,10 +193,16 @@
                                     <constraint firstAttribute="trailing" secondItem="xrh-gO-8JB" secondAttribute="trailing" id="l6z-TG-PSg"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="GEz-C6-RGz">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8OQ-Gg-AB1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="GEz-C6-RGz" firstAttribute="centerY" secondItem="z1l-b8-xrE" secondAttribute="centerY" id="CaA-vD-TkS"/>
+                            <constraint firstItem="GEz-C6-RGz" firstAttribute="centerX" secondItem="z1l-b8-xrE" secondAttribute="centerX" id="Ns4-a9-vEa"/>
                             <constraint firstItem="6o7-Dk-UpM" firstAttribute="leading" secondItem="8OQ-Gg-AB1" secondAttribute="leading" constant="15" id="O96-Dz-W74"/>
                             <constraint firstItem="Y6K-iP-RTa" firstAttribute="centerY" secondItem="WXR-KC-ukO" secondAttribute="centerY" id="UNe-LZ-Tym"/>
                             <constraint firstItem="8OQ-Gg-AB1" firstAttribute="trailing" secondItem="Y6K-iP-RTa" secondAttribute="trailing" constant="15" id="k5z-L8-qD5"/>
@@ -220,6 +226,7 @@
                         <outlet property="cardStatusLabel" destination="wnl-m0-ooW" id="eqo-Z7-JfI"/>
                         <outlet property="expirationDateLabel" destination="xrh-gO-8JB" id="qXm-d0-F1W"/>
                         <outlet property="last4Label" destination="R51-Km-hJj" id="yIg-mv-Ajq"/>
+                        <outlet property="loadingView" destination="GEz-C6-RGz" id="Rrm-cg-S8C"/>
                         <outlet property="nameLabel" destination="Wpx-Uf-tOa" id="3Ca-mv-EDL"/>
                     </connections>
                 </viewController>
