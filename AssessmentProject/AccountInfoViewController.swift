@@ -23,5 +23,14 @@ class AccountInfoViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
+        self.loadAccountInfo()
+    }
+    
+    @IBAction func refreshAccountInfo() {
+        self.loadAccountInfo()
+    }
+    
+    func loadAccountInfo() {
+        
     }
 }

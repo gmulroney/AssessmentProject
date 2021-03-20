@@ -109,7 +109,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Transactions" image="dollarsign.circle.fill" catalog="system" id="Yf3-K3-OOb"/>
-                    <navigationItem key="navigationItem" id="r1w-44-9J3"/>
+                    <navigationItem key="navigationItem" id="r1w-44-9J3">
+                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="jNv-dd-X1m">
+                            <connections>
+                                <action selector="refreshTransactions" destination="6LH-hn-CWM" id="NSc-vt-3u7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="loadingView" destination="Adj-wc-dRF" id="bv1-Ez-aYr"/>
                         <outlet property="transactionsTable" destination="oZH-dQ-leL" id="d8N-RZ-I89"/>
@@ -202,7 +208,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Account" image="person.fill" catalog="system" id="4I9-86-iXV"/>
-                    <navigationItem key="navigationItem" id="e6r-0K-3HN"/>
+                    <navigationItem key="navigationItem" id="e6r-0K-3HN">
+                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="l0m-bf-IzO">
+                            <connections>
+                                <action selector="refreshAccountInfo" destination="fiC-5d-vRw" id="CGA-f6-L68"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="balanceLabel" destination="Y6K-iP-RTa" id="nUU-Ru-0B1"/>
                         <outlet property="cardStatusLabel" destination="wnl-m0-ooW" id="eqo-Z7-JfI"/>
@@ -252,6 +264,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">

@@ -20,21 +20,7 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        loadingView.startAnimating()
-        TransactionModel.fetchTransactions { [weak self] (result) in
-            switch result {
-            case .success(let transactions):
-                self?.transactions = transactions
-                DispatchQueue.main.async {
-                    self?.loadingView.stopAnimating()
-                    self?.transactionsTable.reloadData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    //print error
-                }
-            }
-        }
+        self.loadTransactions()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,5 +42,27 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    @IBAction func refreshTransactions() {
+        self.loadTransactions()
+    }
+    
+    func loadTransactions() {
+        loadingView.startAnimating()
+        TransactionModel.fetchTransactions { [weak self] (result) in
+            switch result {
+            case .success(let transactions):
+                self?.transactions = transactions
+                DispatchQueue.main.async {
+                    self?.loadingView.stopAnimating()
+                    self?.transactionsTable.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    //print error
+                }
+            }
+        }
     }
 }
