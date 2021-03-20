@@ -76,6 +76,11 @@
                                     <outlet property="delegate" destination="6LH-hn-CWM" id="CJy-14-7r7"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="large" id="Adj-wc-dRF">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rMW-nu-645"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -83,11 +88,14 @@
                             <constraint firstItem="oZH-dQ-leL" firstAttribute="leading" secondItem="rMW-nu-645" secondAttribute="leading" id="3Fl-7Q-noH"/>
                             <constraint firstItem="rMW-nu-645" firstAttribute="trailing" secondItem="oZH-dQ-leL" secondAttribute="trailing" id="AE9-Lt-xat"/>
                             <constraint firstItem="rMW-nu-645" firstAttribute="bottom" secondItem="oZH-dQ-leL" secondAttribute="bottom" id="VuJ-wc-rif"/>
+                            <constraint firstItem="Adj-wc-dRF" firstAttribute="centerX" secondItem="oZH-dQ-leL" secondAttribute="centerX" id="if8-cm-aBI"/>
                             <constraint firstItem="oZH-dQ-leL" firstAttribute="top" secondItem="rMW-nu-645" secondAttribute="top" id="oSp-w7-zSI"/>
+                            <constraint firstItem="Adj-wc-dRF" firstAttribute="centerY" secondItem="oZH-dQ-leL" secondAttribute="centerY" id="pHZ-rx-wqC"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="Yf3-K3-OOb"/>
                     <connections>
+                        <outlet property="loadingView" destination="Adj-wc-dRF" id="bv1-Ez-aYr"/>
                         <outlet property="transactionsTable" destination="oZH-dQ-leL" id="d8N-RZ-I89"/>
                     </connections>
                 </viewController>

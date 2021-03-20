@@ -9,16 +9,31 @@ import UIKit
 
 class TransactionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var transactionsTable : UITableView!
+    @IBOutlet weak var loadingView : UIActivityIndicatorView!
     
-    var transactions : Array<TransactionModel> = [TransactionModel(id: "1", amount: -5.00, date: "12/12/21", recipient: "Garrett", description: "New Debit")]
+    var transactions : Array<TransactionModel> = [TransactionModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
+        loadingView.startAnimating()
+        TransactionModel.fetchTransactions { [weak self] (result) in
+            switch result {
+            case .success(let transactions):
+                self?.transactions = transactions
+                DispatchQueue.main.async {
+                    self?.loadingView.stopAnimating()
+                    self?.transactionsTable.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    //print error
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,7 +43,9 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.cellIdentifier()) as!TransactionTableViewCell
         let transaction = transactions[indexPath.row]
-        cell.amountLabel.text = "\(transaction.amount)"
+        if let amount = transaction.amount {
+            cell.amountLabel.text = String(format: "%.2f", amount)
+        }
         cell.dateLabel.text = transaction.date
         cell.descriptionLabel.text = transaction.description
         cell.recipientLabel.text = transaction.recipient

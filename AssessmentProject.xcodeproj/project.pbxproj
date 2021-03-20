@@ -12,6 +12,7 @@
 		E063A5BA260509DC002B1416 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063A5B9260509DC002B1416 /* TransactionTableViewCell.swift */; };
 		E063A5BE26050CBB002B1416 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063A5BD26050CBB002B1416 /* TransactionModel.swift */; };
 		E063A5C1260510F4002B1416 /* AccountInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063A5C0260510F4002B1416 /* AccountInfoModel.swift */; };
+		E063A5C4260598B1002B1416 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E063A5C3260598B1002B1416 /* NetworkManager.swift */; };
 		E0AA5188260269AB0081A228 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AA5187260269AB0081A228 /* AppDelegate.swift */; };
 		E0AA518A260269AB0081A228 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AA5189260269AB0081A228 /* SceneDelegate.swift */; };
 		E0AA518F260269AB0081A228 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0AA518D260269AB0081A228 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		E063A5B9260509DC002B1416 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		E063A5BD26050CBB002B1416 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		E063A5C0260510F4002B1416 /* AccountInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoModel.swift; sourceTree = "<group>"; };
+		E063A5C3260598B1002B1416 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E0AA5184260269AB0081A228 /* AssessmentProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssessmentProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0AA5187260269AB0081A228 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0AA5189260269AB0081A228 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				E063A5B9260509DC002B1416 /* TransactionTableViewCell.swift */,
 				E063A5BD26050CBB002B1416 /* TransactionModel.swift */,
 				E063A5C0260510F4002B1416 /* AccountInfoModel.swift */,
+				E063A5C3260598B1002B1416 /* NetworkManager.swift */,
 			);
 			path = AssessmentProject;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				E063A57E2602766B002B1416 /* TransactionListViewController.swift in Sources */,
 				E0AA5188260269AB0081A228 /* AppDelegate.swift in Sources */,
 				E063A57B26027620002B1416 /* AccountInfoViewController.swift in Sources */,
+				E063A5C4260598B1002B1416 /* NetworkManager.swift in Sources */,
 				E063A5C1260510F4002B1416 /* AccountInfoModel.swift in Sources */,
 				E063A5BA260509DC002B1416 /* TransactionTableViewCell.swift in Sources */,
 				E0AA518A260269AB0081A228 /* SceneDelegate.swift in Sources */,
