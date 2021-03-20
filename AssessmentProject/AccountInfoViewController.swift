@@ -18,7 +18,7 @@ class AccountInfoViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.title = "Account Info"
     }
     
     override func viewWillAppear(_ animated: Bool) {

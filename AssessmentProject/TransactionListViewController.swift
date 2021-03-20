@@ -15,6 +15,7 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Transactions"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +44,7 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.cellIdentifier()) as!TransactionTableViewCell
         let transaction = transactions[indexPath.row]
+        cell.transaction = transaction
         if let amount = transaction.amount {
             cell.amountLabel.text = String(format: "%.2f", amount)
         }
