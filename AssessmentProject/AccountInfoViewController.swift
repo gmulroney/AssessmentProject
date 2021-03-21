@@ -16,7 +16,7 @@ class AccountInfoViewController : UIViewController {
     
     @IBOutlet weak var loadingView : UIActivityIndicatorView!
     
-    var accountModel : AccountInfoModel? = AccountInfoModel(balance: 50, card: CardModel(numberLast4: "0000", expirationDate: "12/12/21", status: CardStatus.Active))
+    var accountModel : AccountInfoModel? = AccountInfoModel(balance: 50, card: CardModel(fullName: CardModel.Fullname(givenName : "Garrett", familyName: "Mulroney"),  numberLast4: "0000", expirationDate: "12/12/21", status: CardModel.Status.Active))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,7 @@ class AccountInfoViewController : UIViewController {
                     if let cardStatus = self?.accountModel?.card.status {
                         self?.cardStatusLabel.text = cardStatus.rawValue
                     }
+                    self?.nameLabel.text = self?.accountModel?.card.fullName.stringValue()
                 }
             case .failure(let error) :
                 print(error)

@@ -32,14 +32,22 @@ struct AccountInfoModel : Codable {
     }
 }
 
-enum CardStatus : String, Codable {
-    case Active
-    case Expired
-    case Locked
-}
-
 struct CardModel : Codable {
-    var numberLast4 : String = ""
-    var expirationDate : String = ""
-    var status : CardStatus
+    struct Fullname : Codable {
+        var givenName : String
+        var familyName : String
+        
+        func stringValue() -> String {
+            return String(format: "%@ %@", givenName, familyName).trimmingCharacters(in: .whitespaces)
+        }
+    }
+    enum Status : String, Codable {
+        case Active
+        case Expired
+        case Locked
+    }
+    var fullName : Fullname
+    var numberLast4 : String
+    var expirationDate : String
+    var status : Status
 }
