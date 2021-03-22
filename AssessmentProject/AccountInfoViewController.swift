@@ -16,7 +16,7 @@ class AccountInfoViewController : UIViewController {
     
     @IBOutlet weak var loadingView : UIActivityIndicatorView!
     
-    var accountModel : AccountInfoModel? = AccountInfoModel(balance: 50, card: CardModel(fullName: CardModel.Fullname(givenName : "Garrett", familyName: "Mulroney"),  numberLast4: "0000", expirationDate: "12/12/21", status: CardModel.Status.Active))
+    var accountModel : AccountInfoModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +54,13 @@ class AccountInfoViewController : UIViewController {
                     }
                     self?.nameLabel.text = self?.accountModel?.card.fullName.stringValue()
                 }
-            case .failure(let error) :
-                print(error)
+            case .failure(_) :
+                let errorAlert = UIAlertController(title: "Error", message: "An error occured while loading your account information.", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+                DispatchQueue.main.async {
+                    self?.loadingView.stopAnimating();
+                    self?.present(errorAlert, animated: true)
+                }
             }
         }
     }
