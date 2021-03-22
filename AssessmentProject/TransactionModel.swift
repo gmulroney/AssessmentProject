@@ -18,7 +18,7 @@ struct TransactionModel : Codable {
     var recipient : String?
     var description : String?
     
-    static func fetchTransactions(_ completionBlock: @escaping (Result<Array<TransactionModel>, Error>) -> Void) {
+    static func fetchTransactions(_ completionBlock: @escaping (Result<Array<TransactionModel>, NetworkError>) -> Void) {
         NetworkManager.sharedInstance.makeRequest(endPoint: "account/transactions", requestMethod: "GET") { (result) in
             switch result {
             case .success(let data):
@@ -26,7 +26,7 @@ struct TransactionModel : Codable {
                     let decodedResponse = try JSONDecoder().decode(TransactionResponse.self, from: data!)
                     completionBlock(.success(decodedResponse.result))
                 } catch {
-                    completionBlock(.failure(error))
+                    completionBlock(.failure(.badResponseError))
                 }
             case .failure(let error):
                 completionBlock(.failure(error))

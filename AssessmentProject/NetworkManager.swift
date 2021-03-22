@@ -10,7 +10,9 @@ import Foundation
 enum NetworkError : Error {
     case badRequestError
     case notFoundError
+    case badResponseError
     case connectionError
+    case unknownError
 }
 
 class NetworkManager {

@@ -58,12 +58,22 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
                     self?.loadingView.stopAnimating()
                     self?.transactionsTable.reloadData()
                 }
-            case .failure(_):
-                let errorAlert = UIAlertController(title: "Error", message: "An error occured while loading your account information.", preferredStyle: .alert)
-                errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
-                DispatchQueue.main.async {
-                    self?.loadingView.stopAnimating();
-                    self?.present(errorAlert, animated: true)
+            case .failure(let error):
+                switch error {
+                case .connectionError:
+                    let errorAlert = UIAlertController(title: "Error", message: "There was an error when trying to connect to the server. Please check your internet connection and try again.", preferredStyle: .alert)
+                    errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    DispatchQueue.main.async {
+                        self?.loadingView.stopAnimating();
+                        self?.present(errorAlert, animated: true)
+                    }
+                default:
+                    let errorAlert = UIAlertController(title: "Error", message: "An error occured while loading your transactions. Please contact Support for more information.", preferredStyle: .alert)
+                    errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    DispatchQueue.main.async {
+                        self?.loadingView.stopAnimating();
+                        self?.present(errorAlert, animated: true)
+                    }
                 }
             }
         }

@@ -15,7 +15,7 @@ struct AccountInfoModel : Codable {
     var balance : Float = 0
     var card : CardModel
     
-    static func loadAccountInfo(completionBlock: @escaping (Result<AccountInfoModel,Error>) -> Void) {
+    static func loadAccountInfo(completionBlock: @escaping (Result<AccountInfoModel,NetworkError>) -> Void) {
         NetworkManager.sharedInstance.makeRequest(endPoint: "account/info", requestMethod: "GET") { (result) in
             switch result {
             case .success(let data) :
@@ -23,7 +23,7 @@ struct AccountInfoModel : Codable {
                     let decodedResponse = try JSONDecoder().decode(AccountInfoResponse.self, from: data!)
                     completionBlock(.success(decodedResponse.result))
                 } catch {
-                    completionBlock(.failure(error))
+                    completionBlock(.failure(.badResponseError))
                 }
             case .failure(let error) :
                 completionBlock(.failure(error))
