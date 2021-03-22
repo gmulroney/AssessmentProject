@@ -12,31 +12,35 @@ class TransactionListViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var loadingView : UIActivityIndicatorView!
     
     var transactions : Array<TransactionModel> = [TransactionModel]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Transactions"
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         self.loadTransactions()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        return transactions.count > 0 ? transactions.count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.cellIdentifier()) as!TransactionTableViewCell
-        let transaction = transactions[indexPath.row]
-        cell.transaction = transaction
-        if let amount = transaction.amount {
-            cell.amountLabel.text = String(format: "%.2f", amount)
+        if (transactions.count > 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.cellIdentifier()) as!TransactionTableViewCell
+            let transaction = transactions[indexPath.row]
+            cell.transaction = transaction
+            if let amount = transaction.amount {
+                cell.amountLabel.text = String(format: "%.2f", amount)
+            }
+            cell.dateLabel.text = transaction.date
+            cell.descriptionLabel.text = transaction.description
+            cell.recipientLabel.text = transaction.recipient
+            return cell
         }
-        cell.dateLabel.text = transaction.date
-        cell.descriptionLabel.text = transaction.description
-        cell.recipientLabel.text = transaction.recipient
+        let cell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell")!
         return cell
     }
     

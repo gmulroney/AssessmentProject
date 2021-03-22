@@ -37,8 +37,25 @@ class NetworkManager {
             if response?.statusCode == 200 {
                 completionBlock(.success(data))
             } else {
-                completionBlock(.failure(response?.statusCode == 400 ? .badRequestError : .notFoundError))
+                do {
+                    let decodedResponse = try JSONDecoder().decode(ErrorResponse.self, from: data!)
+                    completionBlock(.failure(response?.statusCode == 400 ? .badRequestError : .notFoundError))
+                } catch {
+                    completionBlock(.failure(.badResponseError))
+                }
             }
         }.resume()
     }
+}
+
+struct ErrorResponse: Codable {
+    enum ErrorCode : String {
+       case ACCT_NOT_FOUND
+    }
+    var error : ErrorJSON
+}
+
+struct ErrorJSON : Codable {
+    var code : String
+    var message : String
 }
