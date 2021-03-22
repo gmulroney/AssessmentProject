@@ -27,7 +27,7 @@ class NetworkManager {
         }
         var request = URLRequest(url: url)
         request.httpMethod = requestMethod
-        request.setValue("400", forHTTPHeaderField: "x-mock-response-code")
+        request.setValue("200", forHTTPHeaderField: "x-mock-response-code")
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let _ = error {
                 completionBlock(.failure(.connectionError))

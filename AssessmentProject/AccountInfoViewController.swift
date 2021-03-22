@@ -12,7 +12,10 @@ class AccountInfoViewController : UIViewController {
     @IBOutlet weak var nameLabel : UILabel!
     @IBOutlet weak var last4Label : UILabel!
     @IBOutlet weak var expirationDateLabel : UILabel!
+    
+    @IBOutlet weak var cardStatusView : UIView!
     @IBOutlet weak var cardStatusLabel : UILabel!
+    @IBOutlet weak var cardStatusImageView : UIImageView!
     
     @IBOutlet weak var loadingView : UIActivityIndicatorView!
     
@@ -50,6 +53,20 @@ class AccountInfoViewController : UIViewController {
                         self?.expirationDateLabel.text = expirationDate
                     }
                     if let cardStatus = self?.accountModel?.card.status {
+                        switch cardStatus {
+                        case .Active:
+                            self?.cardStatusLabel.text = "ACTIVE"
+                            self?.cardStatusView.backgroundColor = UIColor(named: "SuccessColor")
+                            self?.cardStatusImageView.image = UIImage(systemName: "checkmark.circle.fill")
+                        case .Expired:
+                            self?.cardStatusLabel.text = "EXPIRED"
+                            self?.cardStatusView.backgroundColor = UIColor(named: "WarningColor")
+                            self?.cardStatusImageView.image = UIImage(systemName: "exclamationmark.circle")
+                        case .Locked:
+                            self?.cardStatusLabel.text = "LOCKED"
+                            self?.cardStatusView.backgroundColor = UIColor(named: "ErrorColor")
+                            self?.cardStatusImageView.image = UIImage(systemName: "lock.circle")
+                        }
                         self?.cardStatusLabel.text = cardStatus.rawValue
                     }
                     self?.nameLabel.text = self?.accountModel?.card.fullName.stringValue()
